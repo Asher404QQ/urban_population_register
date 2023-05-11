@@ -3,6 +3,7 @@ package ru.kors.city.web;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import ru.kors.city.dao.PersonCheckDao;
+import ru.kors.city.dao.PoolConnectionBuilder;
 import ru.kors.city.domain.PersonRequest;
 import ru.kors.city.domain.PersonResponse;
 
@@ -23,6 +24,7 @@ public class CheckPersonServlet extends HttpServlet {
     public void init() throws ServletException {
         logger.info("SERVLET is created");
         dao = new PersonCheckDao();
+        dao.setConnectionBuilder(new PoolConnectionBuilder());
     }
 
     @Override
