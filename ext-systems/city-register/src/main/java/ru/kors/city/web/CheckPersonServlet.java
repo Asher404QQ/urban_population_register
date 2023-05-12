@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 @WebServlet(name = "CheckPersonServlet", urlPatterns = {"/checkPerson"})
 public class CheckPersonServlet extends HttpServlet {
@@ -30,18 +31,16 @@ public class CheckPersonServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("UTF-8");
-
-        String surname = req.getParameter("surname");
         PersonRequest request = new PersonRequest();
 
-        request.setSurName(surname);
-        request.setGivenName("СЕРГЕЙ");
-        request.setPatronymic("михайлович");
-        request.setDateOfBirth(LocalDate.of(1989, 02, 24));
-        request.setStreetCode(1);
-        request.setBuilding("10");
-        request.setFloor("2");
-        request.setApartment("21");
+        request.setSurName(req.getParameter("surname"));
+        request.setGivenName(req.getParameter("givenName"));
+        request.setPatronymic(req.getParameter("patronymic"));
+        request.setDateOfBirth(LocalDate.parse(req.getParameter("dateOfBirth"), DateTimeFormatter.ofPattern("dd.MM.yyyy")));
+        request.setStreetCode(Integer.parseInt(req.getParameter("streetCode")));
+        request.setBuilding(req.getParameter("building"));
+        request.setFloor(req.getParameter("floor"));
+        request.setApartment(req.getParameter("apartment"));
 
         try {
             PersonResponse response = dao.checkPerson(request);
