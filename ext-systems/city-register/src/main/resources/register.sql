@@ -74,7 +74,7 @@ insert into cr_address_person (address_id, person_id, start_date)
 values (1, 1, '2014-10-12');
 
 insert into cr_address_person (address_id, person_id, start_date)
-values (2, 2, '2015-03-04');
+values (1, 2, '2015-03-04');
 
 insert into cr_address_person (address_id, person_id, start_date)
 values (1, 3, '2019-12-23');
