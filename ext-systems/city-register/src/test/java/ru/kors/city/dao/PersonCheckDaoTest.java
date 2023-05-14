@@ -17,7 +17,7 @@ class PersonCheckDaoTest {
         request.setSurName("Орлов");
         request.setGivenName("СЕРГЕЙ");
         request.setPatronymic("михайлович");
-        request.setDateOfBirth(LocalDate.of(1989, 02, 24));
+        request.setDateOfBirth(LocalDate.of(1989, 2, 24));
         request.setStreetCode(1);
         request.setBuilding("10");
         request.setFloor("2");
@@ -39,7 +39,9 @@ class PersonCheckDaoTest {
         request.setPatronymic("АНАТОЛЬЕВНА");
         request.setDateOfBirth(LocalDate.of(1992, 11, 21));
         request.setStreetCode(1);
-        request.setBuilding("62");
+        request.setBuilding("10");
+        request.setFloor("2");
+        request.setApartment("21");
 
         PersonCheckDao dao = new PersonCheckDao();
         dao.setConnectionBuilder(new DirectConnectionBuilder());

@@ -1,29 +1,29 @@
 package ru.my_first_project.student_order.register;
 
 public class CityRegisterResponse {
-    private boolean existing;
-    Boolean temporal;
+    private boolean registered;
+    boolean temporal;
 
-    public boolean isExisting() {
-        return existing;
+    public boolean isRegistered() {
+        return registered;
     }
 
-    public void setExisting(boolean existing) {
-        this.existing = existing;
+    public void setRegistered(boolean registered) {
+        this.registered = registered;
     }
 
-    public Boolean getTemporal() {
+    public boolean isTemporal() {
         return temporal;
     }
 
-    public void setTemporal(Boolean temporal) {
+    public void setTemporal(boolean temporal) {
         this.temporal = temporal;
     }
 
     @Override
     public String toString() {
         return "CityRegisterResponse{" +
-                "existing=" + existing +
+                "existing=" + registered +
                 ", temporal=" + temporal +
                 '}';
     }

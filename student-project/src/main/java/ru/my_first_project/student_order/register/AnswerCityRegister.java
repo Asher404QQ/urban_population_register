@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AnswerCityRegister {
-    private List<AnswerCityRegister> items;
+    private List<AnswerCityRegisterItem> items;
 
-    public List<AnswerCityRegister> getItems() {
+    public List<AnswerCityRegisterItem> getItems() {
         return items;
     }
 
@@ -14,6 +14,6 @@ public class AnswerCityRegister {
         if(items == null) {
             items = new ArrayList<>();
         }
-//        this.items.add((AnswerCityRegister) item);
+        items.add(item);
     }
 }
