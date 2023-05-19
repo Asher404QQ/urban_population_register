@@ -8,10 +8,41 @@ import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import ru.kors.register.domain.Person;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import java.util.List;
 
 public class PersonManager {
     public static void main(String[] args) {
+//        sessionExample();
+
+        jpaExample();
+    }
+
+    private static void jpaExample() {
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("persistence");
+
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+
+        entityManager.getTransaction().begin();
+
+        Person p1 = new Person();
+        p1.setFirstName("Иван");
+        p1.setLastName("Ибрагимов");
+        entityManager.persist(p1);
+        System.out.println(p1.getPersonId());
+
+        entityManager.getTransaction().commit();
+
+        entityManager = entityManagerFactory.createEntityManager();
+        List list = entityManager.createQuery("from Person").getResultList();
+        list.forEach(p -> System.out.println(p));
+
+        entityManager.close();
+    }
+
+    private static void sessionExample() {
         SessionFactory sessionFactory = buildSessionFactory();
 
         Session session = sessionFactory.openSession();
