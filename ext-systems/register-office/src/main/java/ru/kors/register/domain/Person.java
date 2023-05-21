@@ -1,24 +1,28 @@
 package ru.kors.register.domain;
 
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
 
+@Table(name = "ro_person")
+@Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "sex", discriminatorType = DiscriminatorType.INTEGER)
 public class Person {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "person_id")
     private Long personID;
+    @Column(name = "first_name")
     private String firstName;
+    @Column(name = "last_name")
     private String lastName;
+    @Column(name = "patronymic")
     private String patronymic;
+    @Column(name = "date_of_birth")
     private LocalDate dateOfBirth;
+    @OneToMany(cascade = {CascadeType.REFRESH}, fetch = FetchType.LAZY, mappedBy = "person")
     private List<Passport> passports;
-    private List<BirthCertificate> birthCertificates;
-
-    public List<BirthCertificate> getBirthCertificates() {
-        return birthCertificates;
-    }
-
-    public void setBirthCertificates(List<BirthCertificate> birthCertificates) {
-        this.birthCertificates = birthCertificates;
-    }
 
     public Long getPersonID() {
         return personID;
